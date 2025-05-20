@@ -26,7 +26,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs";
-import { Search, Headset, FileText, MessageCircle, LifeBuoy, Play, Book, Users, ArrowRight, ChevronRight } from "lucide-react";
+import { Search, Headset, FileText, MessageCircle, LifeBuoy, Play, Book, Users, ArrowRight, ChevronRight, CheckCircle } from "lucide-react";
 
 const Support = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -182,28 +182,28 @@ const Support = () => {
                   <AccordionItem value="item-1" className="bg-white rounded-lg px-6 shadow-sm">
                     <AccordionTrigger className="py-4">How do I create a new user account?</AccordionTrigger>
                     <AccordionContent className="pb-4 text-gray-600">
-                      To create a new user account, click on the "Sign up" button in the top-right corner of any page. You'll need to provide your email address and create a secure password. After that, you'll receive a verification email to confirm your account.
+                      To create a new user account, click on the &quot;Sign up&quot; button in the top-right corner of any page. You&apos;ll need to provide your email address and create a secure password. After that, you&apos;ll receive a verification email to confirm your account.
                     </AccordionContent>
                   </AccordionItem>
                   
                   <AccordionItem value="item-2" className="bg-white rounded-lg px-6 shadow-sm">
                     <AccordionTrigger className="py-4">How do I add team members to my account?</AccordionTrigger>
                     <AccordionContent className="pb-4 text-gray-600">
-                      Team members can be added from your account dashboard. Navigate to "Settings" > "Team Management" and click "Invite Team Member." Enter their email address and select their role permissions. They'll receive an invitation to join your team.
+                      Team members can be added from your account dashboard. Navigate to &quot;Settings&quot; &gt; &quot;Team Management&quot; and click &quot;Invite Team Member.&quot; Enter their email address and select their role permissions. They&apos;ll receive an invitation to join your team.
                     </AccordionContent>
                   </AccordionItem>
                   
                   <AccordionItem value="item-3" className="bg-white rounded-lg px-6 shadow-sm">
                     <AccordionTrigger className="py-4">How do I change my password?</AccordionTrigger>
                     <AccordionContent className="pb-4 text-gray-600">
-                      To change your password, log into your account and go to "Settings" > "Account Security." Click "Change Password" and follow the prompts to set a new password. For security reasons, you'll need to enter your current password first.
+                      To change your password, log into your account and go to &quot;Settings&quot; &gt; &quot;Account Security.&quot; Click &quot;Change Password&quot; and follow the prompts to set a new password. For security reasons, you&apos;ll need to enter your current password first.
                     </AccordionContent>
                   </AccordionItem>
                   
                   <AccordionItem value="item-4" className="bg-white rounded-lg px-6 shadow-sm">
                     <AccordionTrigger className="py-4">What if I forgot my password?</AccordionTrigger>
                     <AccordionContent className="pb-4 text-gray-600">
-                      If you forgot your password, click on the "Log in" button and then select "Forgot Password" beneath the login form. Enter your email address, and we'll send you instructions to reset your password.
+                      If you forgot your password, click on the &quot;Log in&quot; button and then select &quot;Forgot Password&quot; beneath the login form. Enter your email address, and we&apos;ll send you instructions to reset your password.
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
@@ -214,28 +214,28 @@ const Support = () => {
                   <AccordionItem value="item-1" className="bg-white rounded-lg px-6 shadow-sm">
                     <AccordionTrigger className="py-4">How do billing cycles work?</AccordionTrigger>
                     <AccordionContent className="pb-4 text-gray-600">
-                      Your billing cycle starts on the day you subscribe and renews on the same day each month (for monthly plans) or year (for annual plans). For example, if you subscribe on the 15th, you'll be billed on the 15th of each subsequent billing period.
+                      Your billing cycle starts on the day you subscribe and renews on the same day each month (for monthly plans) or year (for annual plans). For example, if you subscribe on the 15th, you&apos;ll be billed on the 15th of each subsequent billing period.
                     </AccordionContent>
                   </AccordionItem>
                   
                   <AccordionItem value="item-2" className="bg-white rounded-lg px-6 shadow-sm">
                     <AccordionTrigger className="py-4">Can I upgrade or downgrade my plan?</AccordionTrigger>
                     <AccordionContent className="pb-4 text-gray-600">
-                      Yes, you can change your plan at any time. If you upgrade, you'll be charged the prorated difference for the remainder of your billing cycle. If you downgrade, the new pricing will take effect at the start of your next billing cycle.
+                      Yes, you can change your plan at any time. If you upgrade, you&apos;ll be charged the prorated difference for the remainder of your billing cycle. If you downgrade, the new pricing will take effect at the start of your next billing cycle.
                     </AccordionContent>
                   </AccordionItem>
                   
                   <AccordionItem value="item-3" className="bg-white rounded-lg px-6 shadow-sm">
                     <AccordionTrigger className="py-4">How do I update my payment information?</AccordionTrigger>
                     <AccordionContent className="pb-4 text-gray-600">
-                      To update your payment method, go to "Settings" > "Billing & Subscription" and click "Update Payment Method." You can add a new card or select from your existing payment methods.
+                      To update your payment method, go to &quot;Settings&quot; &gt; &quot;Billing & Subscription&quot; and click &quot;Update Payment Method.&quot; You can add a new card or select from your existing payment methods.
                     </AccordionContent>
                   </AccordionItem>
                   
                   <AccordionItem value="item-4" className="bg-white rounded-lg px-6 shadow-sm">
                     <AccordionTrigger className="py-4">What happens when my free trial ends?</AccordionTrigger>
                     <AccordionContent className="pb-4 text-gray-600">
-                      When your free trial ends, your account will automatically transition to the plan you selected during signup. If you don't want to continue, make sure to cancel your subscription before the trial period ends to avoid being charged.
+                      When your free trial ends, your account will automatically transition to the plan you selected during signup. If you don&apos;t want to continue, make sure to cancel your subscription before the trial period ends to avoid being charged.
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
@@ -260,14 +260,14 @@ const Support = () => {
                   <AccordionItem value="item-3" className="bg-white rounded-lg px-6 shadow-sm">
                     <AccordionTrigger className="py-4">Can I share my work with team members?</AccordionTrigger>
                     <AccordionContent className="pb-4 text-gray-600">
-                      Yes, you can share your work with team members who have been added to your account. Each tool has sharing options available through the "Share" button within the tool interface. You can control permissions for each shared item.
+                      Yes, you can share your work with team members who have been added to your account. Each tool has sharing options available through the &quot;Share&quot; button within the tool interface. You can control permissions for each shared item.
                     </AccordionContent>
                   </AccordionItem>
                   
                   <AccordionItem value="item-4" className="bg-white rounded-lg px-6 shadow-sm">
                     <AccordionTrigger className="py-4">How often are new tools or features added?</AccordionTrigger>
                     <AccordionContent className="pb-4 text-gray-600">
-                      We typically add new tools quarterly and release feature updates to existing tools monthly. Pro and Enterprise subscribers get early access to new tools and features before they're available to other subscription tiers.
+                      We typically add new tools quarterly and release feature updates to existing tools monthly. Pro and Enterprise subscribers get early access to new tools and features before they&apos;re available to other subscription tiers.
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
@@ -292,14 +292,14 @@ const Support = () => {
                   <AccordionItem value="item-3" className="bg-white rounded-lg px-6 shadow-sm">
                     <AccordionTrigger className="py-4">How do I report a bug or technical issue?</AccordionTrigger>
                     <AccordionContent className="pb-4 text-gray-600">
-                      To report a bug or technical issue, go to your account dashboard and click "Report an Issue" or contact our support team directly. Please include as much detail as possible, including screenshots and steps to reproduce the issue.
+                      To report a bug or technical issue, go to your account dashboard and click &quot;Report an Issue&quot; or contact our support team directly. Please include as much detail as possible, including screenshots and steps to reproduce the issue.
                     </AccordionContent>
                   </AccordionItem>
                   
                   <AccordionItem value="item-4" className="bg-white rounded-lg px-6 shadow-sm">
                     <AccordionTrigger className="py-4">Is there a desktop application available?</AccordionTrigger>
                     <AccordionContent className="pb-4 text-gray-600">
-                      Currently, ToolsHub is a web-based platform without native desktop applications. However, you can create a shortcut on your desktop using your browser's "Create Shortcut" feature for quick access.
+                      Currently, ToolsHub is a web-based platform without native desktop applications. However, you can create a shortcut on your desktop using your browser&apos;s &quot;Create Shortcut&quot; feature for quick access.
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
