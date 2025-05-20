@@ -25,6 +25,26 @@ const Index = () => {
   useEffect(() => {
     // Ensure page starts at the top
     window.scrollTo(0, 0);
+    
+    // Add smooth scroll behavior for anchor links
+    const handleAnchorClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const anchor = target.closest('a');
+      
+      if (anchor && anchor.hash && anchor.hash.startsWith('#')) {
+        const element = document.querySelector(anchor.hash);
+        if (element) {
+          e.preventDefault();
+          window.scrollTo({
+            top: element.getBoundingClientRect().top + window.scrollY - 100,
+            behavior: 'smooth'
+          });
+        }
+      }
+    };
+    
+    document.addEventListener('click', handleAnchorClick);
+    return () => document.removeEventListener('click', handleAnchorClick);
   }, []);
 
   return (
