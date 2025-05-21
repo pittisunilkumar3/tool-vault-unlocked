@@ -57,15 +57,6 @@ const AnimatedWrapper = ({
   staggerChildren
 }: AnimatedWrapperProps) => {
   
-  // Create animation props
-  const animationProps: AnimationProps = {
-    initial: "hidden",
-    whileInView: "visible",
-    viewport: { once, margin: '-100px', amount },
-    variants: animations[animation],
-    custom
-  };
-  
   // Add transition with optional staggering effect
   const transition = staggerChildren
     ? {
@@ -82,8 +73,12 @@ const AnimatedWrapper = ({
   
   return (
     <motion.div
-      {...animationProps}
+      initial="hidden"
+      animate="visible"
+      viewport={{ once, margin: '-100px', amount }}
+      variants={animations[animation]}
       transition={transition}
+      custom={custom}
       className={className}
     >
       {children}
