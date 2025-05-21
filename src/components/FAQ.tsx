@@ -1,11 +1,13 @@
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import AnimatedWrapper from './AnimatedWrapper';
 
 const faqs = [
   {
@@ -31,34 +33,76 @@ const faqs = [
   {
     question: "How often do you add new tools?",
     answer: "We're constantly developing new tools and improving existing ones. On average, we add a new tool every quarter, and all new tools are automatically included in Pro and Enterprise subscriptions."
+  },
+  {
+    question: "Can I get a refund if I'm not satisfied?",
+    answer: "Yes, we offer a 30-day money-back guarantee. If you're not satisfied with our service, you can request a full refund within 30 days of your purchase."
+  },
+  {
+    question: "What payment methods do you accept?",
+    answer: "We accept all major credit cards, PayPal, and bank transfers for annual plans. For enterprise customers, we can also accommodate purchase orders and other payment methods."
   }
 ];
 
 const FAQ = () => {
   return (
-    <section id="faq" className="py-20">
+    <section id="faq" className="py-20 bg-white relative">
+      <div className="absolute top-0 left-0 w-full h-16 bg-gradient-to-b from-gray-50 to-transparent"></div>
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <AnimatedWrapper animation="fade" delay={0.2} className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-3xl font-bold mb-4">Frequently asked questions</h2>
           <p className="text-gray-600 text-lg">Everything you need to know about our subscription service.</p>
-        </div>
+        </AnimatedWrapper>
         
         <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible className="space-y-4">
-            {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="border rounded-lg px-6">
-                <AccordionTrigger className="text-left text-lg font-medium py-4">{faq.question}</AccordionTrigger>
-                <AccordionContent className="text-gray-600 pb-4">{faq.answer}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          <AnimatedWrapper animation="fade" delay={0.4} staggerChildren={0.1}>
+            <Accordion type="single" collapsible className="space-y-4">
+              {faqs.map((faq, index) => (
+                <AccordionItem 
+                  key={index} 
+                  value={`item-${index}`} 
+                  className="border rounded-lg px-6 shadow-sm hover:shadow-md transition-shadow bg-white"
+                >
+                  <AccordionTrigger className="text-left text-lg font-medium py-4 hover:text-brand-purple transition-colors">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-600 pb-4 pt-2">
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {faq.answer}
+                    </motion.div>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </AnimatedWrapper>
         </div>
         
-        <div className="mt-12 text-center">
-          <p className="text-gray-600">
-            Still have questions? <a href="#" className="text-brand-purple font-medium hover:underline">Contact our support team</a>
-          </p>
-        </div>
+        <AnimatedWrapper animation="fade" delay={0.6} className="mt-16">
+          <div className="bg-gradient-to-r from-brand-lavender/10 to-brand-purple/10 rounded-xl p-8 max-w-3xl mx-auto">
+            <div className="text-center">
+              <h3 className="text-xl font-semibold mb-4">Still have questions?</h3>
+              <p className="text-gray-600 mb-6">Our support team is available 24/7 to help you with any questions you may have.</p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a 
+                  href="#" 
+                  className="inline-flex items-center justify-center px-6 py-3 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 hover:text-brand-purple transition-colors shadow-sm"
+                >
+                  View documentation
+                </a>
+                <a 
+                  href="/contact" 
+                  className="inline-flex items-center justify-center px-6 py-3 bg-brand-purple text-white rounded-lg hover:bg-brand-indigo transition-colors shadow-sm"
+                >
+                  Contact support
+                </a>
+              </div>
+            </div>
+          </div>
+        </AnimatedWrapper>
       </div>
     </section>
   );

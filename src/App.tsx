@@ -20,6 +20,7 @@ import Roadmap from "./pages/Roadmap";
 import Integrations from "./pages/Integrations";
 import Enterprise from "./pages/Enterprise";
 import Support from "./pages/Support";
+import PricingPage from "./pages/Pricing";
 import NavigationIndicator from "./components/NavigationIndicator";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
+          <Route path="/pricing" element={<PricingPage />} />
           <Route path="/tools/:toolId" element={<ToolDetails />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />
