@@ -1,14 +1,17 @@
 
 import React, { ReactNode } from 'react';
-import { motion, Variants } from 'framer-motion';
+import { motion, Variants, AnimationProps } from 'framer-motion';
 
 interface AnimatedWrapperProps {
   children: ReactNode;
   delay?: number;
-  animation?: 'fade' | 'slide-up' | 'slide-left' | 'slide-right' | 'zoom' | 'none';
+  animation?: 'fade' | 'slide-up' | 'slide-left' | 'slide-right' | 'zoom' | 'blur' | 'none';
   duration?: number;
   className?: string;
   once?: boolean;
+  amount?: number;
+  custom?: any;
+  staggerChildren?: number;
 }
 
 const animations: Record<string, Variants> = {
@@ -32,6 +35,10 @@ const animations: Record<string, Variants> = {
     hidden: { opacity: 0, scale: 0.95 },
     visible: { opacity: 1, scale: 1 }
   },
+  blur: {
+    hidden: { opacity: 0, filter: 'blur(8px)' },
+    visible: { opacity: 1, filter: 'blur(0px)' }
+  },
   none: {
     hidden: {},
     visible: {}
@@ -44,15 +51,39 @@ const AnimatedWrapper = ({
   animation = 'slide-up',
   duration = 0.5,
   className = '',
-  once = true
+  once = true,
+  amount = 0.2,
+  custom,
+  staggerChildren
 }: AnimatedWrapperProps) => {
+  
+  // Create animation props
+  const animationProps: AnimationProps = {
+    initial: "hidden",
+    whileInView: "visible",
+    viewport: { once, margin: '-100px', amount },
+    variants: animations[animation],
+    custom
+  };
+  
+  // Add transition with optional staggering effect
+  const transition = staggerChildren
+    ? {
+        duration,
+        delay, 
+        ease: 'easeOut',
+        staggerChildren,
+      }
+    : {
+        duration,
+        delay, 
+        ease: 'easeOut'
+      };
+  
   return (
     <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once, margin: '-100px' }}
-      variants={animations[animation]}
-      transition={{ duration, delay, ease: 'easeOut' }}
+      {...animationProps}
+      transition={transition}
       className={className}
     >
       {children}

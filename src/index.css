@@ -76,6 +76,18 @@
   .gradient-text-oceanic {
     @apply bg-gradient-to-r from-brand-teal to-blue-500 bg-clip-text text-transparent;
   }
+  
+  .text-gradient-blue {
+    @apply bg-gradient-to-r from-blue-400 to-cyan-500 bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-purple {
+    @apply bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-amber {
+    @apply bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent;
+  }
 }
 
 @layer components {
@@ -94,6 +106,10 @@
   .animated-border-lavender {
     @apply relative before:absolute before:inset-0 before:p-[1px] before:rounded-xl before:bg-gradient-to-r before:from-brand-lavender before:to-brand-indigo before:opacity-70 before:-z-10;
   }
+  
+  .animated-border-oceanic {
+    @apply relative before:absolute before:inset-0 before:p-[1px] before:rounded-xl before:bg-gradient-to-r before:from-brand-teal before:to-blue-500 before:opacity-70 before:-z-10;
+  }
 
   .fancy-blur-layer {
     @apply absolute -z-10 rounded-full blur-3xl opacity-70 mix-blend-multiply;
@@ -105,5 +121,43 @@
 
   .glow-effect {
     @apply relative after:absolute after:inset-0 after:-z-10 after:rounded-xl after:opacity-0 after:transition-opacity after:duration-300 hover:after:opacity-100 after:bg-gradient-to-r after:from-brand-purple/50 after:to-brand-teal/50 after:blur-xl;
+  }
+  
+  .shine-effect {
+    @apply relative overflow-hidden before:absolute before:inset-0 before:-z-10 before:translate-x-[-100%] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent hover:before:translate-x-[100%] before:transition-transform before:duration-1000;
+  }
+  
+  .floating-animation {
+    @apply animate-float;
+  }
+  
+  .shimmer-bg {
+    @apply bg-gradient-to-r from-transparent via-white/10 to-transparent bg-[length:200%_100%] animate-shimmer;
+  }
+  
+  .interactive-card {
+    @apply hover:shadow-lg hover:scale-[1.01] hover:border-brand-purple/30 transition-all duration-300;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .mask-radial-gradient {
+    mask-image: radial-gradient(circle at center, black, transparent 80%);
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse-slow 3s ease-in-out infinite;
+  }
+  
+  .animate-shimmer {
+    animation: shimmer 2s infinite linear;
   }
 }
