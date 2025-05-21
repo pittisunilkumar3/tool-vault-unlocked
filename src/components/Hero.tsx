@@ -7,29 +7,90 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
   const [activeFeature, setActiveFeature] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
   const features = [
     "Seamless Integration",
     "Smart Automation",
     "Advanced Analytics",
-    "Secure Collaboration"
+    "Secure Collaboration",
+    "Custom Workflows",
+    "Real-time Updates"
   ];
 
   useEffect(() => {
+    setIsVisible(true);
     const interval = setInterval(() => {
       setActiveFeature((prev) => (prev + 1) % features.length);
-    }, 3000);
+    }, 2500);
     return () => clearInterval(interval);
   }, [features.length]);
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+  };
+
+  const staggerItems = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const floatingAnimation = {
+    y: [0, -15, 0],
+    transition: {
+      duration: 6,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }
+  };
+
   return (
     <section className="relative pt-28 lg:pt-36 pb-20 md:pb-28 overflow-hidden">
-      {/* Animated background elements */}
+      {/* Enhanced animated background elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-        <div className="absolute top-1/4 right-0 -translate-y-1/2 w-96 h-96 bg-brand-purple/10 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-brand-teal/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/2 left-0 w-64 h-64 bg-blue-400/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
         <motion.div 
-          className="absolute -top-24 -right-24 w-96 h-96 bg-gradient-to-br from-brand-purple/5 to-brand-teal/5 rounded-full"
+          animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.7, 0.5] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 right-0 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-brand-purple/20 to-indigo-500/10 rounded-full blur-3xl"
+        />
+        <motion.div 
+          animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute bottom-0 left-1/4 w-80 h-80 bg-gradient-to-tr from-brand-teal/20 to-emerald-400/10 rounded-full blur-3xl"
+        />
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.2, 1],
+            rotate: [0, 10, 0],
+            opacity: [0.4, 0.6, 0.4]
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 5 }}
+          className="absolute top-1/2 left-0 w-64 h-64 bg-gradient-to-r from-blue-400/15 to-cyan-300/10 rounded-full blur-3xl"
+        />
+        <motion.div 
+          className="absolute -top-24 -right-24 w-96 h-96 bg-gradient-to-br from-brand-purple/10 to-brand-teal/10 rounded-full"
           animate={{ 
             scale: [1, 1.1, 1],
             rotate: [0, 10, 0],
@@ -43,40 +104,38 @@ const Hero = () => {
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-12">
-          <div className="lg:w-1/2 text-center lg:text-left space-y-8">
-            <div className="inline-block animate-fade-in">
-              <motion.span 
-                className="px-3 py-1 rounded-full bg-brand-purple/10 text-brand-purple text-sm font-medium flex items-center gap-2"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
+        <motion.div 
+          className="flex flex-col lg:flex-row items-center gap-12"
+          initial="hidden"
+          animate={isVisible ? "visible" : "hidden"}
+          variants={containerVariants}
+        >
+          <motion.div className="lg:w-1/2 text-center lg:text-left space-y-8" variants={containerVariants}>
+            <motion.div variants={itemVariants} className="inline-block">
+              <span 
+                className="px-3 py-1 rounded-full bg-brand-purple/15 text-brand-purple text-sm font-medium flex items-center gap-2"
               >
                 <span className="inline-flex items-center justify-center bg-brand-purple text-white rounded-full w-5 h-5">
                   <Star className="w-3 h-3" />
                 </span>
                 <span>Introducing ToolsHub Pro Subscription</span>
-              </motion.span>
-            </div>
+              </span>
+            </motion.div>
             
             <motion.h1 
+              variants={itemVariants}
               className="text-4xl md:text-6xl font-bold tracking-tight"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
             >
-              All the tools you need, <br />
+              Unlock your team's <br />
               <span className="relative">
                 <span className="absolute -z-10 top-1/2 left-0 h-4 w-full bg-brand-teal/20 -translate-y-1/2 transform skew-x-12"></span>
-                <span className="gradient-text">in one place</span>
+                <span className="gradient-text">full potential</span>
               </span>
             </motion.h1>
             
             <motion.div
+              variants={itemVariants}
               className="relative h-8 overflow-hidden"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.4 }}
             >
               <div className="text-xl text-gray-600 absolute transition-transform duration-500 w-full text-center lg:text-left" style={{ transform: `translateY(${activeFeature * -32}px)` }}>
                 {features.map((feature, index) => (
@@ -88,35 +147,34 @@ const Hero = () => {
             </motion.div>
             
             <motion.p 
+              variants={itemVariants}
               className="text-xl text-gray-600 max-w-2xl mx-auto lg:mx-0"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.6 }}
             >
-              Access premium productivity tools with a simple subscription. Boost your workflow and save money with our curated collection.
+              Experience the complete suite of productivity tools tailored for modern teams. Streamline workflows, enhance collaboration, and drive results with our integrated platform.
             </motion.p>
             
             <motion.div 
+              variants={staggerItems}
               className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.8 }}
             >
-              <Button size="lg" className="group w-full sm:w-auto bg-gradient-to-r from-brand-purple to-brand-teal hover:opacity-90 transition-all">
-                Get started <ChevronRight className="ml-1 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Link to="/tools/1">
-                <Button variant="outline" size="lg" className="w-full sm:w-auto group">
-                  View demo <Play className="ml-1 h-4 w-4 group-hover:scale-110 transition-transform" />
+              <motion.div variants={itemVariants} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button size="lg" className="group w-full sm:w-auto bg-gradient-to-r from-brand-purple to-brand-teal hover:opacity-90 transition-all">
+                  Start your journey <ChevronRight className="ml-1 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
-              </Link>
+              </motion.div>
+              
+              <motion.div variants={itemVariants} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link to="/tools/1">
+                  <Button variant="outline" size="lg" className="w-full sm:w-auto group">
+                    Watch demo <Play className="ml-1 h-4 w-4 group-hover:scale-110 transition-transform" />
+                  </Button>
+                </Link>
+              </motion.div>
             </motion.div>
             
             <motion.div 
+              variants={fadeInUp}
               className="pt-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.7, delay: 1 }}
             >
               <div className="flex items-center justify-center lg:justify-start gap-2 text-sm text-gray-500">
                 <div className="flex -space-x-2">
@@ -128,22 +186,32 @@ const Hero = () => {
                 <span>Trusted by 10,000+ professionals worldwide</span>
               </div>
             </motion.div>
-          </div>
+          </motion.div>
           
-          <div className="lg:w-1/2">
+          <motion.div 
+            className="lg:w-1/2"
+            variants={itemVariants}
+          >
             <motion.div 
               className="relative"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, delay: 0.5 }}
             >
-              <div className="absolute -top-8 -left-8 w-20 h-20 bg-brand-purple/10 rounded-full blur-xl animate-pulse-slow"></div>
-              <div className="absolute -bottom-12 -right-12 w-32 h-32 bg-brand-teal/10 rounded-full blur-xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
+              <motion.div 
+                animate={floatingAnimation}
+                className="absolute -top-8 -left-8 w-20 h-20 bg-brand-purple/15 rounded-full blur-xl"
+              />
+              <motion.div 
+                animate={floatingAnimation}
+                transition={{ delay: 1 }}
+                className="absolute -bottom-12 -right-12 w-32 h-32 bg-brand-teal/15 rounded-full blur-xl"
+              />
               
-              <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+              <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-700">
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-purple to-brand-teal"></div>
                 <div className="p-1">
-                  <div className="flex items-center gap-1 px-3 py-2 border-b border-gray-100">
+                  <div className="flex items-center gap-1 px-3 py-2 border-b border-gray-100 dark:border-gray-700">
                     <div className="flex gap-1.5">
                       <div className="w-3 h-3 rounded-full bg-red-400"></div>
                       <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
@@ -160,10 +228,11 @@ const Hero = () => {
               </div>
               
               <motion.div 
-                className="absolute -bottom-6 -left-6 bg-white rounded-lg shadow-lg p-4 max-w-[200px]"
+                className="absolute -bottom-6 -left-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 max-w-[200px]"
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 1, duration: 0.5 }}
+                whileHover={{ y: -5, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1)" }}
               >
                 <div className="flex items-center gap-3 mb-2">
                   <div className="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
@@ -181,17 +250,18 @@ const Hero = () => {
                     <span className="text-xs text-gray-500">Projects</span>
                     <span className="text-xs font-medium">24</span>
                   </div>
-                  <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                  <div className="h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
                     <div className="h-full bg-brand-purple w-2/3 rounded-full"></div>
                   </div>
                 </div>
               </motion.div>
               
               <motion.div 
-                className="absolute -top-6 -right-6 bg-white rounded-lg shadow-lg p-4 max-w-[200px]"
+                className="absolute -top-6 -right-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 max-w-[200px]"
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 1.2, duration: 0.5 }}
+                whileHover={{ y: -5, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1)" }}
               >
                 <div className="text-sm font-medium mb-1">Productivity Score</div>
                 <div className="flex justify-between items-center mb-1">
@@ -207,17 +277,17 @@ const Hero = () => {
                 </div>
               </motion.div>
             </motion.div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
         
         <motion.div 
-          className="mt-24 pt-10 border-t border-gray-100"
+          className="mt-24 pt-10 border-t border-gray-100 dark:border-gray-800"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 1.4 }}
         >
           <p className="text-center text-sm text-gray-500 mb-6">Trusted by innovative companies worldwide</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center justify-items-center opacity-70">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center opacity-70">
             <svg className="h-6 text-gray-400" viewBox="0 0 168 48" fill="currentColor"><path d="M168 40.8V7.2H0v33.6h168z" fill="none"></path><path d="M110.5 13.3c3.5 0 5.9 2.3 5.9 5.9s-2.3 6.1-5.9 6.1h-7.9v6.9h-4.2V13.3h12.1zm-7.9 8.2h7.4c1 0 2.2-.9 2.2-2.3s-1.2-2.3-2.2-2.3h-7.4v4.6zM123.8 32.2l-7.1-18.9h4.2l4.7 13.9 4.6-13.9h4.2l-7 18.9h-3.6zM84 32.2V13.3h4.1v18.9H84zM42.1 13.3c3.3 0 5.9 1.1 8.2 3.4l-2.8 3.2C46 18.5 44.2 18 42 18c-3.5 0-6 2.2-6 6.3 0 4.2 2.2 6.7 6 6.7 2.3 0 4.4-.9 5.7-2.4l2.4 2.8c-2.4 2.3-5.1 3.7-8.7 3.7-6.6 0-10.2-4.5-10.2-10.6.2-6.6 4.2-11.2 10.9-11.2zM68.9 28.6c2.6 0 5.1-1.2 6.2-2.7l2.8 2.6c-2.2 2.6-5.5 4.1-9.2 4.1-7.1-.1-10.9-4.7-10.9-10.8 0-6 4.1-10.5 10.2-10.5 6.7 0 10.1 4.9 9.8 11.7H62.3c.6 3.3 2.9 5.6 6.6 5.6zm4.7-9.3c-.4-3-2.2-5.3-5.9-5.3-3.2 0-5.5 1.8-6.1 5.3h12zM16.3 39.9c-3.4 0-5.9-1.2-7.9-3l2.4-2.9c1.5 1.4 3.1 2.2 5.4 2.2 2.9 0 4.7-1.3 4.7-3.6s-1.3-3.7-6.5-3.7v-3.1c4.6 0 5.9-1.4 5.9-3.4s-1.7-3.4-4.2-3.4c-2 0-3.5.9-4.9 2.1l-2.4-2.9c2-1.9 4.3-3 7.5-3 5 0 8.3 2.4 8.3 6.6 0 2.6-1.3 4.4-4.2 5.5 3.1 1 4.8 2.9 4.8 5.9-.1 4.8-3.8 7.7-8.9 7.7zM96.5 32.2V22.7c0-3.9-1.9-5.8-4.4-5.8s-4.5 1.9-4.5 5.8v9.5h-4.1V13.3h4.1v1.8c1.4-1.5 3.4-2.2 5.8-2.2 4.6 0 7.2 3.5 7.2 9.2v10.1h-4.1z"></path></svg>
             <svg className="h-6 text-gray-400" viewBox="0 0 168 48" fill="currentColor"><path d="M168 40.8V7.2H0v33.6h168z" fill="none"></path><path d="M60.9 37.9V13.1H42.1v4.3h14.4v16.2H41.4v4.3h19.5zM119.5 37.9V13.1h-18.8v4.3h14.4v16.2H99.9v4.3h19.6zM90.8 26.9c0-7.7-5.9-14-13.2-14s-13.2 6.3-13.2 14 5.9 14 13.2 14 13.2-6.3 13.2-14zm-22 0c0-5.4 3.9-9.8 8.8-9.8s8.8 4.4 8.8 9.8-3.9 9.8-8.8 9.8-8.8-4.4-8.8-9.8zM149.9 13.1v2.6c-1.6-2-4-3.1-6.6-3.1-6.2 0-11.2 5.5-11.2 12.3 0 6.7 5 12.3 11.2 12.3 2.6 0 5-1.1 6.6-3.1v2.6h4.2V13.1h-4.2zm-5.8 19.8c-4.1 0-7.5-3.6-7.5-8.1s3.4-8.1 7.5-8.1 7.5 3.6 7.5 8.1-3.4 8.1-7.5 8.1zM24.9 44.1c-13.3 0-20.7-13-20.7-13l3.1-2.9s6.4 11.4 17.6 11.4 17.6-11.4 17.6-11.4l3.1 2.9c-.1 0-7.5 13-20.7 13z"></path></svg>
             <svg className="h-5 text-gray-400" viewBox="0 0 168 48" fill="currentColor"><path d="M168 40.8V7.2H0v33.6h168z" fill="none"></path><path d="M84 12.3L68.5 35.7h-4.1L78.9 12H58.7v-4.1h42.1V12h-17l15.5 23.7h4.1L89 12.3zM54.3 23.2c0 7.3-5.9 13.4-13.4 13.4s-13.4-6-13.4-13.4S33.3 9.8 40.9 9.8c7.4 0 13.4 6.1 13.4 13.4zM113.7 27V36h-4.1v-9.1l-15.9-14.9h5.4l12.5 12 12.5-12h5.4zM145.4 36V7.8h22.1v4.1h-18v7.3h18v4.1h-18v8.6h18v4.1z"></path></svg>
