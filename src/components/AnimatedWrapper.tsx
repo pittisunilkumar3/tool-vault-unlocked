@@ -12,8 +12,8 @@ interface AnimatedWrapperProps {
   amount?: number;
   custom?: any;
   staggerChildren?: number;
-  whileHover?: Variants;
-  whileTap?: Variants;
+  whileHover?: any; // Changed from Variants to any
+  whileTap?: any; // Changed from Variants to any
 }
 
 const animations: Record<string, Variants> = {
