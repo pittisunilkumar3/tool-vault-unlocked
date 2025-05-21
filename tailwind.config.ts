@@ -67,7 +67,12 @@ export default {
 					purple: "#6941C6",
 					teal: "#0E9C9B",
 					light: "#F9FAFB",
-					dark: "#101828"
+					dark: "#101828",
+					lavender: "#9b87f5",
+					indigo: "#4f46e5",
+					midnight: "#1e1b4b",
+					rose: "#e11d48",
+					amber: "#f59e0b"
 				}
 			},
 			borderRadius: {
@@ -145,6 +150,44 @@ export default {
 					'100%': {
 						backgroundPosition: '200% 0',
 					}
+				},
+				'morphing-bg': {
+					'0%, 100%': { 
+						'background-size': '200% 200%',
+						'background-position': 'left center'
+					},
+					'50%': { 
+						'background-size': '200% 200%',
+						'background-position': 'right center'
+					}
+				},
+				'breathing': {
+					'0%, 100%': { transform: 'scale(1)' },
+					'50%': { transform: 'scale(1.03)' }
+				},
+				'wiggle': {
+					'0%, 100%': { transform: 'rotate(-3deg)' },
+					'50%': { transform: 'rotate(3deg)' }
+				},
+				'bounce-gentle': {
+					'0%, 100%': {
+						transform: 'translateY(0)',
+						animationTimingFunction: 'cubic-bezier(0.8, 0, 1, 1)'
+					},
+					'50%': {
+						transform: 'translateY(-10px)',
+						animationTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)'
+					}
+				},
+				'blur-in': {
+					'0%': { 
+						filter: 'blur(12px)',
+						opacity: '0'
+					},
+					'100%': { 
+						filter: 'blur(0)',
+						opacity: '1'
+					}
 				}
 			},
 			animation: {
@@ -156,7 +199,22 @@ export default {
 				'pulse-slow': 'pulse-slow 3s ease-in-out infinite',
 				'float': 'float 6s ease-in-out infinite',
 				'spin-slow': 'spin-slow 8s linear infinite',
-				'shimmer': 'shimmer 2s linear infinite'
+				'shimmer': 'shimmer 2s linear infinite',
+				'morphing-bg': 'morphing-bg 15s ease infinite',
+				'breathing': 'breathing 8s ease-in-out infinite',
+				'wiggle': 'wiggle 2s ease-in-out infinite',
+				'bounce-gentle': 'bounce-gentle 6s infinite',
+				'blur-in': 'blur-in 1.2s cubic-bezier(0.11, 0, 0.5, 0)'
+			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+				'gradient-subtle': 'linear-gradient(to right, rgb(249,250,251), rgb(242,242,242))',
+				'gradient-purple-teal': 'linear-gradient(135deg, #6941C6 0%, #0E9C9B 100%)',
+				'gradient-sunset': 'linear-gradient(135deg, #f59e0b 0%, #e11d48 100%)',
+				'gradient-oceanic': 'linear-gradient(135deg, #0E9C9B 0%, #0284c7 100%)',
+				'gradient-lavender': 'linear-gradient(135deg, #9b87f5 0%, #c084fc 100%)',
+				'gradient-midnight': 'linear-gradient(135deg, #1e1b4b 0%, #4f46e5 100%)'
 			}
 		}
 	},
